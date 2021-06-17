@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title>胖记烤肉店</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta http-equiv="x-ua-compatible" content="IE=edge" />
+	<style>
+		html {
+			height: 100%;
+		}
+
+		body {
+			height: 100%;
+			overflow: hidden;
+			margin: 0;
+			padding: 0;
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 16px;
+			color: #FFFFFF;
+			background-color: #000000;
+		}
+
+
+		/* MAIN VARIABLES FOR CUSTOMIZATION */
+		/* -------------------------------- */
+		.nav {
+			overflow: hidden;
+			position: absolute;
+			left: 10px;
+			bottom: 10px;
+			
+			max-width: 90%;
+			height: 46px;
+			/* margin-top: -45px; */
+			
+			/* -webkit-transform: translate3d(-50%, 0, 0);
+				transform: translate3d(-50%, 0, 0); */
+			
+		}
+
+		.nav__cb {
+			z-index: -1000;
+			position: absolute;
+			left: 0;
+			top: 0;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.nav__content {
+			position: relative;
+
+			background: rgb(14, 13, 13);
+			opacity: 0.8;
+			border-radius: 46px;
+			box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+			max-width: 500px;
+			width: 10%;
+			width: 46px;
+			height: 100%;
+			-webkit-transition: width 0.5s cubic-bezier(0.49, -0.3, 0.68, 1.23);
+			transition: width 0.5s cubic-bezier(0.49, -0.3, 0.68, 1.23);
+		}
+
+		.nav__cb:checked~.nav__content {
+			-webkit-transition: width 0.5s cubic-bezier(0.48, 0.43, 0.29, 1.3);
+			transition: width 0.5s cubic-bezier(0.48, 0.43, 0.29, 1.3);
+			width: 100%;
+		}
+		
+
+		.nav__items {
+			position: relative;
+			left: 0px;
+			height: 100%;
+			padding-left: 35px;
+			padding-right: 15px;
+			margin: 0px;
+			list-style-type: none;
+		}
+
+		.nav__item {
+			display: inline-block;
+			vertical-align: top;
+			width: 60px;
+			text-align: center;
+			color: #6C7784;
+			font-size: 12px;
+
+			font-family: Arial, sans-serif;
+
+			-webkit-perspective: 1000px;
+			perspective: 1000px;
+			-webkit-transition: color 0.3s;
+			transition: color 0.3s;
+			cursor: pointer;
+			margin-top: 3px;
+		}
+
+		.nav__item:hover {
+			color: #00bdea;
+		}
+
+		.nav__item-text {
+			display: block;
+			color: #FFFFFF;
+			height: 100%;
+			-webkit-transform: rotateY(-70deg);
+			transform: rotateY(-70deg);
+			opacity: 0;
+			-webkit-transition: opacity 0.5s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
+			transition: opacity 0.5s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
+			transition: transform 0.5s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.7s;
+			transition: transform 0.5s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.7s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
+			line-height: 15px;
+			font-size: 12px;
+			transform: scale(0.84);
+
+		}
+
+		.nav__cb:checked~.nav__content .nav__item-text {
+			-webkit-transform: rotateY(0);
+			transform: rotateY(0);
+			opacity: 1;
+			-webkit-transition: opacity 0.2s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
+			transition: opacity 0.2s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
+			transition: transform 0.5s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.2s;
+			transition: transform 0.5s cubic-bezier(0.48, 0.43, 0.7, 2.5), opacity 0.2s, -webkit-transform 0.7s cubic-bezier(0.48, 0.43, 0.7, 2.5);
+			transform: scale(0.84);
+		}
+
+		.nav__btn {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 46px;
+			height: 46px;
+			cursor: pointer;
+
+		}
+
+		.nav__btn:before,
+		.nav__btn:after {
+			content: "";
+			display: block;
+			background-image: url(./img/icon-ideamake-action.png);
+			background-size: 34px, 34px;
+			background-repeat: no-repeat;
+			background-position: center;
+			width: 46px;
+			height: 46px;
+		}
+
+		.nav__cb:checked~.nav__btn:before {
+			background-image: url(./img/icon-more.png);
+			background-size: 20px, 20px;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		.menu_icon {
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.menu-icon-sanbox {
+			background-image: url(./img/icon-sanbox.png);
+		}
+
+		.menu-icon-man {
+			background-image: url(./img/icon-man.png);
+		}
+
+		.menu-icon-prototyperoom {
+			background-image: url(./img/icon-prototyperoom.png);
+		}
+
+		.menu-icon-housetype {
+			background-image: url(./img/icon-housetype.png);
+		}
+
+		.menu-icon-location {
+			background-image: url(./img/icon-location.png);
+		}
+
+		.menu-icon-brochure {
+			background-image: url(./img/icon-brochure.png);
+		}
+
+		.menu-icon-3dmodel {
+			background-image: url(./img/icon-3dmodel.png);
+		}
+
+		.nav__item input[type="radio"] {
+			/*为了保险起见，把原生样式隐藏掉*/
+			display: none;
+			opacity: 0;
+		}
+
+		#radio-sandbox:checked+div {
+			/*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+			background: url(./img/icon-sanbox-action.png);
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#radio-man:checked+div {
+			/*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+			background: url(./img/icon-man-action.png);
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#radio-prototyperoom:checked+div {
+			/*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+			background: url(./img/icon-prototyperoom-action.png);
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#radio-housetype:checked+div {
+			/*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+			background: url(./img/icon-housetype-action.png);
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#radio-location:checked+div {
+			/*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+			background: url(./img/icon-location-action.png);
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#radio-brochure:checked+div {
+			/*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+			background: url(./img/icon-brochure-action.png);
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		#radio-3dmodel:checked+div {
+			/*当radiuo被选中时，把input下边的div标签的背景图片替换掉*/
+			background: url(./img/icon-3dmodel-action.png);
+			width: 100%;
+			height: 24px;
+			background-size: 24px, 24px;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.move_div {
+			overflow: hidden;
+		}
+
+		.move_box {
+			white-space: nowrap;
+			/*文本不会换行，文本会在在同一行上继续*/
+			overflow-y: auto;
+		}
+		.move_box::-webkit-scrollbar{
+            display: none;
+        }
+		.box1 {
+			display: inline-block;
+			/*行内块元素*/
+		}
+	</style>
+</head>
+
+<body>
+
+	<script src="tour.js"></script>
+
+	<div id="pano" style="width:100%;height:100%;">
+		<noscript>
+			<table style="width:100%;height:100%;">
+				<tr style="vertical-align:middle;">
+					<td>
+						<div style="text-align:center;">ERROR:<br /><br />Javascript not activated<br /><br /></div>
+					</td>
+				</tr>
+			</table>
+		</noscript>
+		<script>
+			embedpano({ swf: "tour.swf", xml: "tour.xml", target: "pano", html5: "auto", mobilescale: 1.0, passQueryParameters: true });
+		</script>
+	</div>
+
+	<nav class="nav">
+		<input type="checkbox" class="nav__cb" id="menu-cb">
+		<div class="nav__content">
+			<ul class="nav__items">
+				<div class="move_div">
+					<div class="move_box">
+						<div class="box1">
+							<li class="nav__item">
+								<label>
+									<input type="radio" id="radio-sandbox" name="bottom_menu_radio" value="" />
+									<div class="menu_icon menu-icon-sanbox"></div>
+									<span class="nav__item-text"> 三维沙盘 </span>
+								</label>
+							</li>
+						</div>
+						<div class="box1">
+							<li class="nav__item">
+								<label>
+									<input type="radio" id="radio-man" name="bottom_menu_radio" value="" />
+									<div class="menu_icon menu-icon-man"></div>
+									<span class="nav__item-text"> 语音讲房 </span>
+								</label>
+							</li>
+						</div>
+						<div class="box1">
+							<li class="nav__item">
+								<label>
+									<input type="radio" id="radio-prototyperoom" name="bottom_menu_radio" value="" />
+									<div class="menu_icon menu-icon-prototyperoom"></div>
+									<span class="nav__item-text"> 样板间 </span>
+								</label>
+							</li>
+						</div>
+						<div class="box1">
+							<li class="nav__item">
+								<label>
+									<input type="radio" id="radio-housetype" name="bottom_menu_radio" value="" />
+									<div class="menu_icon menu-icon-housetype"></div>
+									<span class="nav__item-text"> 户型鉴赏 </span>
+								</label>
+							</li>
+						</div>
+						<div class="box1">
+							<li class="nav__item">
+								<label>
+									<input type="radio" id="radio-location" name="bottom_menu_radio" value="" />
+									<div class="menu_icon menu-icon-location"></div>
+									<span class="nav__item-text"> 区位交通 </span>
+								</label>
+							</li>
+						</div>
+						<div class="box1">
+							<li class="nav__item">
+								<label>
+									<input type="radio" id="radio-brochure" name="bottom_menu_radio" value="" />
+									<div class="menu_icon menu-icon-brochure"></div>
+									<span class="nav__item-text"> 楼书 </span>
+								</label>
+							</li>
+						</div>
+						<div class="box1">
+							<li class="nav__item">
+								<label>
+									<input type="radio" id="radio-3dmodel" name="bottom_menu_radio" value="" />
+									<div class="menu_icon menu-icon-3dmodel"></div>
+									<span class="nav__item-text"> 720轴侧 </span>
+								</label>
+							</li>
+						</div>
+					</div>
+				</div>
+			</ul>
+		</div>
+		<label class="nav__btn" for="menu-cb"></label>
+	</nav>
+
+
+	<!-- <div class="iw-menu-container" style="width: 486px; left: 10px; display: block; bottom: 10px; transition: width 0s ease 0s, left 0.5s ease 0s, all 0.5s ease 0s;">
+	<div class="iw-menu-hide onShowing">
+		<div class="iw-ui-icon-more"></div>
+	</div>
+</div>
+<div class="iw-menu-scroll iw-menu-show" style="left: 46px; width: 450px; display: block; bottom: 10px; transition: width 0s ease 0s, left 0.5s ease 0s, all 0.5s ease 0s;">
+	<div type="iw-icon-sanbox" name="三维沙盘" class="onshow startup" iw-click="submenu" iw-clk-param="link_secondmenu_5b59e94a10d3d21c692116400ed88b06" id="0" style="left: 0px;">
+		<div class="menu_icon iw-icon-sanbox"></div>
+		<span class="text-main">三维沙盘</span>
+	</div>
+	<div type="iw-icon-man" name="语音讲房" class="onshow" iw-click="submenu" iw-clk-param="link_secondmenu_2263b4bee406ef1b58e008e4629692eb" id="1" style="left: 62px;">
+		<div class="menu_icon iw-icon-man"></div>
+		<span class="text-main">语音讲房</span>
+	</div>
+	<div type="iw-icon-prototyperoom" name="样板间" class="onshow action" iw-click="submenu" iw-clk-param="link_secondmenu_a11e399749b6a0d107211d988a0b9cb4" id="2" style="left: 124px;">
+		<div class="menu_icon iw-icon-prototyperoom action"></div>
+		<span class="text-main action">样板间</span>
+	</div>
+	<div type="iw-icon-housetype" name="户型鉴赏" class="onshow" iw-click="reset" iw-clk-page="huxing30ceshi_8ho19" iw-clk-param="main_1_0,0" id="3" style="left: 186px;">
+		<div class="menu_icon iw-icon-housetype"></div>
+		<span class="text-main">户型鉴赏</span>
+	</div>
+	<div type="iw-icon-location" name="区位交通" iw-click="reset" iw-clk-page="quweijiaotong_20200303194551" iw-clk-param="main,0" id="4" style="left: 248px;">
+		<div class="menu_icon iw-icon-location"></div>
+		<span class="text-main">区位交通</span>
+	</div>
+	<div type="iw-icon-brochure" name="楼书" iw-click="reset" iw-clk-page="dianziloushu_1544" iw-clk-param="main,0,main_0,0" id="5" style="left: 310px;">
+		<div class="menu_icon iw-icon-brochure"></div>
+		<span class="text-main">楼书</span>
+	</div>
+	<div type="iw-icon-3dmodel" name="720轴侧" iw-click="submenu" iw-clk-param="link_secondmenu_1883da3416d4139ac294ad3524b1a2a8" id="6" style="padding-right: 0px; left: 372px;">
+		<div class="menu_icon iw-icon-3dmodel"></div>
+		<span class="text-main">720轴侧</span>
+	</div>
+</div> -->
+
+
+</body>
+
+</html>
