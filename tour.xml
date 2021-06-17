@@ -193,7 +193,7 @@
 	</action>
 
 	<action name="bgsnd_action" autorun="onstart">
-   		playsound(bgsnd, '/music/bg.mp3', 0);
+   		playsound(bgsnd, './music/bg.mp3', 0);
 	</action>
 
 	<action name="add_all_the_time_tooltip_for_VR">
